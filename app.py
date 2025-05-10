@@ -1,7 +1,6 @@
 from flask import Flask
 import psycopg2
 import os
-from routes import routes
 
 app = Flask(__name__)
 
@@ -17,6 +16,7 @@ def get_db_connection():
     return connection
 
 # Register routes
+from routes import routes  # Import the routes after defining the 'get_db_connection' function
 app.register_blueprint(routes)
 
 if __name__ == "__main__":

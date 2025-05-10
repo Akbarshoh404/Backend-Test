@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app import get_db_connection  # Import the db connection function
+from app import get_db_connection  # Importing get_db_connection from app.py
 
 routes = Blueprint('routes', __name__)
 
