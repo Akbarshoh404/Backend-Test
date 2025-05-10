@@ -1,6 +1,7 @@
 from flask import Flask
 import psycopg2
 import os
+from routes import routes
 
 app = Flask(__name__)
 
@@ -15,19 +16,7 @@ def get_db_connection():
     )
     return connection
 
-# Example of a route that uses the database
-@app.route('/some-route')
-def some_route():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute('SELECT * FROM some_table')
-    rows = cur.fetchall()
-    cur.close()
-    conn.close()
-    return {'data': rows}
-
 # Register routes
-from routes import routes
 app.register_blueprint(routes)
 
 if __name__ == "__main__":
