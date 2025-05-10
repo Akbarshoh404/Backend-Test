@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app import get_db_connection  # Importing get_db_connection from app.py
+from db import get_db_connection  # Importing get_db_connection from db.py
 
 routes = Blueprint('routes', __name__)
 
@@ -32,6 +32,7 @@ def get_user(user_id):
         cur = conn.cursor()
         
         # Query to get a specific user by ID
+        app.py
         cur.execute("SELECT user_id, name, email FROM users WHERE user_id = %s", (user_id,))
         row = cur.fetchone()
         
@@ -83,7 +84,7 @@ def update_user(user_id):
         cur = conn.cursor()
         
         # Check if user exists
-        cur.execute("SELECT * FROM users WHERE user_id = %s", (user_id,))
+        cur.execute("SELECT user_id, name, email FROM users WHERE user_id = %s", (user_id,))
         user = cur.fetchone()
         
         if not user:
@@ -115,7 +116,7 @@ def patch_user(user_id):
         cur = conn.cursor()
         
         # Check if user exists
-        cur.execute("SELECT * FROM users WHERE user_id = %s", (user_id,))
+        cur.execute("SELECT user_id, name, email FROM users WHERE user_id = %s", (user_id,))
         user = cur.fetchone()
         
         if not user:

@@ -1,22 +1,10 @@
+import os  # Added os import
 from flask import Flask
-import psycopg2
-import os
+from routes import routes  # Import the routes
 
 app = Flask(__name__)
 
-# Database connection function
-def get_db_connection():
-    connection = psycopg2.connect(
-        host=os.getenv('DB_HOST', 'postgres.railway.internal'),
-        port=os.getenv('DB_PORT', '5432'),
-        user=os.getenv('DB_USER', 'postgres'),
-        password=os.getenv('DB_PASSWORD', 'JGPhLkbufBXvVHSTIfvfxXUFbXxIPzqn'),
-        dbname=os.getenv('DB_NAME', 'railway')
-    )
-    return connection
-
 # Register routes
-from routes import routes  # Import the routes after defining the 'get_db_connection' function
 app.register_blueprint(routes)
 
 if __name__ == "__main__":
